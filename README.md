@@ -1,6 +1,6 @@
 # werxs.ai Website
 
-Welcome to the repository for the werxs.ai website, a cutting-edge Python Flask web application designed to provide a secure and responsive platform for our users. This application integrates Okta for robust authentication and utilizes Bootstrap to ensure our website is responsive and accessible on all devices.
+Werxs.ai website. Built in Python. Secured through Okta.
 
 ## Features
 
