@@ -1,0 +1,19 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.center-graphic {
+    max-width: 60%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: 700;
+    color: #4a4a4a;
+}

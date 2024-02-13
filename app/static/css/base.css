@@ -4,3 +4,11 @@ body {
     background-color: #ffffff;
     text-align: center; /* Ensures text alignment is centered globally if not overridden */
 }
+
+
+
+
+.navbar-light {
+    background-color: #f8f9fa!important; /* Light grey, adjust as needed */
+  }
+  
