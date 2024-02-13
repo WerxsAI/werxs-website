@@ -1,0 +1,10 @@
+Flask
+Flask-Bootstrap
+Flask-WTF
+Flask-Login
+Flask-MongoEngine
+python-dotenv
+Flask-OIDC
+requests
+gunicorn
+boto3
