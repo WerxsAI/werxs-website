@@ -1,0 +1,52 @@
+{% extends "base.html" %} {% block title %}Admin{% endblock %} {% block content
+%}
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#"
+              >Overview <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <!-- More sidebar items -->
+        </ul>
+      </div>
+    </div>
+    <!-- Main Content -->
+    <div class="col-md-10 ms-sm-auto col-lg-10 px-md-4">
+      <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+      >
+        <!-- Your Main Content Here -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="p-3 border bg-light">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="p-3 border bg-light">
+              Praesent tincidunt sed tellus ut rutrum.
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-md-6">
+            <div class="p-3 border bg-light">
+              Sed vitae nisi efficitur, placerat orci id, dapibus mauris.
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="p-3 border bg-light">
+              Integer nec odio nec lorem accumsan condimentum.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
