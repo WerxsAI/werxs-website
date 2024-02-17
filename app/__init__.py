@@ -2,7 +2,7 @@ from flask import Flask
 
 # Ensure all your route imports are correct
 from .routes.public import public_bp
-from .routes.admin import admin_bp  # Assuming there was a typo in your initial script
+from .routes.admin import admin_bp
 from .routes.realtor import realtor_bp
 
 
