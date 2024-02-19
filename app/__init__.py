@@ -1,9 +1,12 @@
 from flask import Flask
+from dotenv import load_dotenv
+from os import environ as env
 
 # Ensure all your route imports are correct
 from .routes.public import public_bp
 from .routes.admin import admin_bp
 from .routes.realtor import realtor_bp
+from .routes.auth import auth_bp, setup_oauth
 
 
 # Base configuration class
@@ -21,6 +24,7 @@ class TestConfig(Config):
 
 def create_app(config_class=Config):
     app = Flask(__name__)
+    app.secret_key = env.get("APP_SECRET_KEY")
     app.config.from_object(config_class)
 
     # Register blueprints
