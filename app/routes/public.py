@@ -4,5 +4,5 @@ public_bp = Blueprint("public", __name__)
 
 
 @public_bp.route("/")
-def home():
+def index():
     return render_template("coming_soon.html")
