@@ -1,4 +1,3 @@
-# app/utilities/auth_utils.py
 from flask import session, redirect, url_for
 from functools import wraps
 

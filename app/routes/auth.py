@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, url_for, session, render_template
+from flask import Blueprint, redirect, url_for, session
 from authlib.integrations.flask_client import OAuth
 from os import environ as env
 from urllib.parse import urlencode, quote_plus
@@ -8,7 +8,6 @@ auth_bp = Blueprint("auth_bp", __name__)
 
 # Setup OAuth
 oauth = OAuth()
-
 
 def setup_oauth(app):
     oauth.init_app(app)
