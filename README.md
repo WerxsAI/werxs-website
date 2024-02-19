@@ -1,10 +1,10 @@
 # werxs.ai Website
 
-Werxs.ai website. Built in Python. Secured through Okta.
+Werxs.ai website. Built in Python. Secured through Auth0.
 
 ## Features
 
-- **Secure Authentication with Okta:** Ensures secure access for both admin and future regular users by leveraging Okta's comprehensive authentication services.
+- **Secure Authentication with auth0:** Ensures secure access for both admin and future regular users by leveraging auth0's comprehensive authentication services.
 - **Responsive Design with Bootstrap:** Delivers a seamless, mobile-friendly user experience across all devices, thanks to Bootstrap's responsive design capabilities.
 - **Admin Dashboard:** Provides admin users with the tools needed to manage the platform effectively, including user permissions and content updates.
 - **Data Upload Capability:** Allows users to securely upload training data bundles, which are then stored in AWS S3 for processing and analysis.
@@ -43,7 +43,7 @@ This section will guide you through setting up the project locally on your machi
 
 4. **Environment Variables**
 
-    Set up the necessary environment variables for Okta and AWS S3 integration. Refer to the `.env.example` file for the required variables.
+    Set up the necessary environment variables for auth0 and AWS S3 integration. Refer to the `.env.example` file for the required variables.
 
 5. **Run the Application**
 
