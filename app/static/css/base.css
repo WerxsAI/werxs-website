@@ -1,8 +1,14 @@
+html, body {
+    height: 100%; /* Make sure the page fills the viewport height */
+  }
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #ffffff;
     text-align: center; /* Ensures text alignment is centered globally if not overridden */
+    display: flex;
+    flex-direction: column; /* Stack the content and footer */
 }
 
 .navbar-light {
@@ -13,3 +19,7 @@ body {
 .nav-link-margin-right {
     margin-right: 20px; /* Adjust the value as needed */
 }
+
+main {
+    flex: 1; /* Allows main content to expand and push the footer down */
+  }

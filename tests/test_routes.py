@@ -29,6 +29,18 @@ class TestRoutes(TestCase):
         self.assertEqual(response.status_code, 200)
         # Add more assertions based on expected content
 
+    def test_news_page(self):
+        # Test the realtor page route
+        response = self.client.get("/news")
+        self.assertEqual(response.status_code, 200)
+        # Add more assertions based on expected content
+        
+    def test_contact_page(self):
+        # Test the realtor page route
+        response = self.client.get("/contact")
+        self.assertEqual(response.status_code, 200)
+        # Add more assertions based on expected content
+
     def test_login_redirect(self):
         """
         Test if accessing the login route redirects to the Auth0 login page.

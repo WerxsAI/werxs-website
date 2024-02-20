@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}WerxsAI{% endblock %}
+
+{% block additional_css %}
+<link href="{{ url_for('static', filename='css/pages/home.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<!-- Hero Image -->
+<div class="hero-image">
+  <img src="{{ url_for('static', filename='img/hero/hero_img1.webp') }}" class="img-fluid" alt="It's faster than you think">
+</div>
+
+<div class="container my-5">
+  <!-- 2x2 Grid -->
+  <div class="row">
+    {% for i in range(1, 5) %}
+    <!-- Grid Item -->
+    <div class="col-md-6 mb-4">
+      <div class="section-frame">
+        <img src="path/to/your/image{{ i }}.jpg" class="img-fluid" alt="Header Image {{ i }}">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <a href="#" class="btn custom-btn">Call to Action</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

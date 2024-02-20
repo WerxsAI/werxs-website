@@ -22,10 +22,10 @@
     />
     {% block additional_css %}{% endblock %}
   </head>
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     {% include 'header.html' %}
-    <main>{% block content %}{% endblock %}</main>
-    <footer class="bg-light text-center text-lg-start">
+    <main class="flex-shrink-0">{% block content %}{% endblock %}</main>
+    <footer class="mt-auto bg-light text-center text-lg-start">
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
         {% block footer %} © 2024 Werxs.AI: All rights reserved. {% endblock %}
       </div>
