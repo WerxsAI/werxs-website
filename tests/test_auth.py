@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 from flask_testing import TestCase
 from app import create_app, TestConfig
 

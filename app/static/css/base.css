@@ -23,3 +23,7 @@ body {
 main {
     flex: 1; /* Allows main content to expand and push the footer down */
   }
+
+.div-footer {
+    background-color: #343a40; /* Corrected line */
+}

@@ -1,6 +1,8 @@
 from flask import Flask
 from dotenv import load_dotenv
 from os import environ as env
+import logging
+from flask.logging import default_handler
 
 # Load environment variables
 load_dotenv()
@@ -16,7 +18,8 @@ from .routes.auth import auth_bp, setup_oauth
 
 # Base configuration class
 class Config:
-    SECRET_KEY = env.get("APP_SECRET_KEY", "your_fallback_secret_key_here")
+    SECRET_KEY = env.get("APP_SECRET_KEY", "KLAHSAFGSAt6atsahstd6adsA%jh")
+    MONGO_URI = env.get("MONGO_URI")  # Ensure this is set in your .env file
     # Add more configurations here as needed
 
 
@@ -30,6 +33,11 @@ class TestConfig(Config):
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
+
+    # Initalize logging
+    # Configure logging
+    logging.basicConfig(level=logging.DEBUG)  # or DEBUG for more detailed output
+    # app.logger.removeHandler(default_handler)  # Optional: Remove the default Flask logger handler
 
     # Initialize OAuth with the Flask app instance
     setup_oauth(app)

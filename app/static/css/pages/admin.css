@@ -1,0 +1,20 @@
+/* Sidebar Styling */
+.bg-dark {
+    background-color: #343a40 !important; /* Darker shade for sidebar */
+  }
+  
+  /* Modern Button Styling */
+  .btn {
+    background-color: #6c757d; /* Neutral, modern color */
+    border: none;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .btn:hover {
+    background-color: #5a6268; /* Darken button color on hover */
+    color: #fff;
+  }
+  
