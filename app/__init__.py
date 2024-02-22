@@ -19,7 +19,6 @@ from .routes.auth import auth_bp, setup_oauth
 # Base configuration class
 class Config:
     SECRET_KEY = env.get("APP_SECRET_KEY", "KLAHSAFGSAt6atsahstd6adsA%jh")
-    MONGO_URI = env.get("MONGO_URI")  # Ensure this is set in your .env file
     # Add more configurations here as needed
 
 
