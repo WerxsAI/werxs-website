@@ -1,52 +1,46 @@
-{% extends "base.html" %} {% block title %}Admin{% endblock %} {% block content
-%}
+{% extends "base.html" %} {% block title %}Admin Dashboard{% endblock %} {% block content %}
 <div class="container-fluid">
   <div class="row">
-    <!-- Sidebar -->
-    <div class="col-md-2 d-none d-md-block bg-light sidebar">
-      <div class="sidebar-sticky pt-3">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" href="#"
-              >Overview <span class="sr-only">(current)</span></a
-            >
-          </li>
-          <!-- More sidebar items -->
-        </ul>
-      </div>
-    </div>
-    <!-- Main Content -->
-    <div class="col-md-10 ms-sm-auto col-lg-10 px-md-4">
+    {% include 'sidenav.html' %}
+    <!-- Main Content Area -->
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
       >
-        <!-- Your Main Content Here -->
+        <h1 class="h2">Dashboard</h1>
+      </div>
+      <div class="container-fluid">
+        <!-- Example row of columns -->
         <div class="row">
-          <div class="col-md-6">
-            <div class="p-3 border bg-light">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </div>
+          <div class="col-md-6 mb-3">
+            <h2>Section 1</h2>
+            <p>
+              Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
+              tellus ac cursus commodo, tortor mauris condimentum nibh, ut
+              fermentum massa justo sit amet risus.
+            </p>
+            <p>
+              <a class="btn btn-secondary" href="#" role="button"
+                >View details »</a
+              >
+            </p>
           </div>
-          <div class="col-md-6">
-            <div class="p-3 border bg-light">
-              Praesent tincidunt sed tellus ut rutrum.
-            </div>
-          </div>
-        </div>
-        <div class="row mt-2">
-          <div class="col-md-6">
-            <div class="p-3 border bg-light">
-              Sed vitae nisi efficitur, placerat orci id, dapibus mauris.
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="p-3 border bg-light">
-              Integer nec odio nec lorem accumsan condimentum.
-            </div>
+          <div class="col-md-6 mb-3">
+            <h2>Section 2</h2>
+            <p>
+              Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
+              tellus ac cursus commodo, tortor mauris condimentum nibh, ut
+              fermentum massa justo sit amet risus.
+            </p>
+            <p>
+              <a class="btn btn-secondary" href="#" role="button"
+                >View details »</a
+              >
+            </p>
           </div>
         </div>
       </div>
-    </div>
+    </main>
   </div>
 </div>
 {% endblock %}

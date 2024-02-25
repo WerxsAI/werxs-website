@@ -1,0 +1,47 @@
+/* Custom Navbar Styles */
+.navbar {
+    background-color: #343a40; /* Darker shade for contrast */
+    box-shadow: 0 2px 4px rgba(0,0,0,.1); /* Subtle shadow for depth */
+  }
+  
+  .navbar-brand {
+    color: #ffffff !important;
+    font-weight: bold;
+    margin-right: 2rem; /* Adjust spacing around the brand */
+  }
+  
+  .navbar-brand:hover {
+    color: #cae8d5 !important; /* Lighter color on hover */
+  }
+  
+  .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.1); /* Make toggler more subtle or visible */
+  }
+  
+  .nav-link, .navbar-toggler-icon {
+    color: #ffffff !important; /* Light text for better readability */
+  }
+  
+  .nav-link:hover {
+    color: #cae8d5 !important; /* Highlight links on hover */
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle background on hover */
+  }
+  
+  /* Custom Dropdown Menu Styles */
+  .dropdown-menu {
+    background-color: #007f5f; /* Dark background for dropdown */
+  }
+  
+  .dropdown-item {
+    color: #ffffff !important;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #005f73; /* Darker background on hover */
+    color: #cae8d5 !important;
+  }
+  
+  .fas.fa-user-circle { /* User icon styling */
+    color: #cae8d5;
+  }
+  
