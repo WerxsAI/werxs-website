@@ -7,9 +7,13 @@ public_bp = Blueprint("public", __name__)
 def home():
     return render_template("home.html")
 
-@public_bp.route("/news")
-def news():
-    return render_template("news.html")
+@public_bp.route("/blog")
+def blog():
+    return render_template("blog.html")
+
+@public_bp.route("/blog_detail")
+def blog_detail():
+    return render_template("blog_detail.html")
 
 @public_bp.route("/contact")
 def contact():

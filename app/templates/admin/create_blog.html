@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Admin - Create Blog Post{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        {% include 'sidenav.html' %}
+        <!-- Main Content Area -->
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h2>Create Blog Post</h2>
+            </div>
+            <form method="POST" action="/admin/create_blog">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.title.label(class="form-label") }}
+                    {{ form.title(class="form-control" + (" is-invalid" if form.title.errors else "")) }}
+                    {% for error in form.title.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    {{ form.author.label(class="form-label") }}
+                    {{ form.author(class="form-control" + (" is-invalid" if form.author.errors else "")) }}
+                    {% for error in form.author.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    {{ form.content.label(class="form-label") }}
+                    {{ form.content(class="form-control" + (" is-invalid" if form.content.errors else ""), id="content")
+                    }}
+                    {% for error in form.content.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    {{ form.category_name.label(class="form-label") }}
+                    {{ form.category_name(class="form-control" + (" is-invalid" if form.category_name.errors else ""))
+                    }}
+                    {% for error in form.category_name.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    {{ form.image_url.label(class="form-label") }}
+                    {{ form.image_url(class="form-control") }}
+                </div>
+                {{ form.submit(class="btn btn-primary") }}
+            </form>
+        </main>
+    </div>
+</div>
+<script src="https://cdn.tiny.cloud/1/nlbivy885ie56znctmvd2stxiwg498t257bz2d572v1g3bh4/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#content',
+        plugins: 'link image preview codesample table code',
+        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+        // Ensure the content is saved back to the textarea when the form is submitted
+        setup: function (editor) {
+            editor.on('change', function () {
+                editor.save();
+            });
+        }
+    });
+</script>
+{% endblock %}
