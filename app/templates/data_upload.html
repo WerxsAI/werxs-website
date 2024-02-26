@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %}Upload Data{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Main Content Area -->
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="container">
+                <h2>Upload Data File</h2>
+                <form action="/data_upload" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="llmModel">Select LLM Model</label>
+                        <select class="form-control" id="llmModel" name="llmModel">
+                            <option value="llama2">Llama2</option>
+                            <option value="mistral">Mistral</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dataFile">Upload File</label>
+                        <input type="file" class="form-control-file" id="dataFile" name="dataFile">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </main>
+    </div>
+</div>
+{% block additional_js %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('form').submit(function (e) {
+            e.preventDefault(); // Prevent the default form submission
+            var fileInput = $('#dataFile')[0];
+            var file = fileInput.files[0];
+            var modelName = $('#llmModel').val();
+            var formData = new FormData();
+            formData.append('file', file);
+
+            // Request pre-signed URL
+            $.ajax({
+                url: '/generate_presigned_url',
+                method: 'POST',
+                data: JSON.stringify({ filename: file.name, filetype: file.type }),
+                contentType: 'application/json',
+                success: function (response) {
+                    // Use the pre-signed URL to upload the file to S3
+                    var presignedUrl = response.url;
+                    $.ajax({
+                        url: presignedUrl,
+                        method: 'PUT',
+                        data: file,
+                        contentType: file.type,
+                        processData: false,
+                        success: function () {
+                            // After successful upload to S3, submit additional data to your Flask backend
+                            $.ajax({
+                                url: '/data_upload',
+                                method: 'POST',
+                                data: {
+                                    llmModel: modelName,
+                                    s3FileKey: file.name, // Adjust based on how you generate the key
+                                    s3FileUrl: presignedUrl.split('?')[0] // Remove query parameters
+                                },
+                                success: function () {
+                                    alert('File successfully uploaded');
+                                },
+                                error: function () {
+                                    alert('Error submitting upload metadata');
+                                }
+                            });
+                        },
+                        error: function () {
+                            alert('Error uploading file to S3');
+                        }
+                    });
+                },
+                error: function () {
+                    alert('Error generating pre-signed URL');
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
+{% endblock %}

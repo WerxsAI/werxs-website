@@ -11,9 +11,12 @@ load_dotenv()
 from .routes.public import public_bp
 from .routes.admin import admin_bp
 from .routes.realtor import realtor_bp
-
+# Import data_upload routes
+from .routes.data_upload import data_upload_bp
 # Import auth_bp and setup_oauth from your auth module
 from .routes.auth import auth_bp, setup_oauth
+
+
 
 
 # Base configuration class
@@ -46,6 +49,7 @@ def create_app(config_class=Config):
     app.register_blueprint(admin_bp)
     app.register_blueprint(realtor_bp)
     app.register_blueprint(auth_bp)  # Register the auth Blueprint
+    app.register_blueprint(data_upload_bp) # Register the data file upload routes Blueprint
 
     # Additional initialization here if necessary
 

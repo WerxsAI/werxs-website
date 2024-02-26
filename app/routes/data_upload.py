@@ -1,50 +1,60 @@
-from flask import Flask, request, redirect, flash
+from flask import Flask, request, jsonify, flash, redirect, Blueprint, render_template
 import boto3
 from werkzeug.utils import secure_filename
-from flask import current_app as app
+from botocore.exceptions import NoCredentialsError, PartialCredentialsError, ClientError
+from dotenv import load_dotenv
+from os import environ as env
+
+load_dotenv()
 
 # Configure your S3 bucket details
-S3_BUCKET = "your_bucket_name"
-S3_KEY = "your_aws_access_key_id"
-S3_SECRET = "your_aws_secret_access_key"
-S3_LOCATION = f"http://{S3_BUCKET}.s3.amazonaws.com/"
-
+S3_BUCKET = env.get("S3_BUCKET")
+S3_KEY = env.get("S3_KEY")
+S3_SECRET = env.get("S3_SECRET")
 s3 = boto3.client("s3", aws_access_key_id=S3_KEY, aws_secret_access_key=S3_SECRET)
 
+ALLOWED_EXTENSIONS = {"csv", "json"}
 
-def upload_file_to_s3(file, bucket_name, acl="public-read"):
-    try:
-        s3.upload_fileobj(
-            file,
-            bucket_name,
-            file.filename,
-            ExtraArgs={"ACL": acl, "ContentType": file.content_type},
+data_upload_bp = Blueprint("data_upload", __name__)
+
+
+def allowed_file(filename):
+    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@data_upload_bp.route("/generate_presigned_url", methods=["POST"])
+def generate_presigned_url():
+    filename = request.json.get("filename")
+    filetype = request.json.get("filetype")
+    if not filename or not filetype:
+        return jsonify({"error": "Missing filename or filetype"}), 400
+
+    if allowed_file(filename):
+        presigned_url = s3.generate_presigned_url(
+            "put_object",
+            Params={"Bucket": S3_BUCKET, "Key": filename, "ContentType": filetype},
+            ExpiresIn=3600,  # URL expires in 1 hour
         )
-
-    except Exception as e:
-        # In case the upload fails
-        print("Something Happened: ", e)
-        return e
-
-    return f"{S3_LOCATION}{file.filename}"
+        return jsonify({"url": presigned_url, "filename": filename})
+    else:
+        return jsonify({"error": "File type not allowed"}), 400
 
 
-@app.route("/upload", methods=["POST"])
-def upload_file():
-    if "file" not in request.files:
-        flash("No file part")
-        return redirect(request.url)
+@data_upload_bp.route("/data_upload", methods=["GET", "POST"])
+def data_upload():
+    if request.method == "GET":
+        # Render the data upload form when the user navigates to the page
+        return render_template("data_upload.html")
+    else:  # POST
+        # Extract form data or handle file upload
+        llm_model = request.form.get("llmModel")
+        s3_file_key = request.form.get("s3FileKey")
+        s3_file_url = request.form.get("s3FileUrl")
 
-    file = request.files["file"]
+        if not llm_model or not s3_file_key or not s3_file_url:
+            flash("Missing data")
+            return redirect(request.url)
 
-    if file.filename == "":
-        flash("No selected file")
-        return redirect(request.url)
-
-    if file:
-        output = upload_file_to_s3(file, S3_BUCKET)
-        return str(output)
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
+        # Process the data, e.g., save to database and provide feedback
+        flash("File successfully uploaded with LLM Model: " + llm_model)
+        return redirect("/")
